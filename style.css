@@ -67,7 +67,7 @@ header {
 	left: 2px;
 	top: 50%;
 	transform: translateY(-50%);
-	color: black;
+	/* color: black; */
 	font-weight: 800;
 	transition: color 0.25s ease;
 }
@@ -89,7 +89,7 @@ header {
 }
 #c-to-f-switch.to-f::after {
 	font-weight: 800;
-	color: black;
+	/* color: black; */
 }
 
 #c-to-f {
