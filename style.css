@@ -41,6 +41,76 @@ body {
 	color: var(--color-text);
 }
 
+header {
+	display: flex;
+	gap: 1rem;
+	justify-self: end;
+}
+
+#c-to-f-switch {
+	position: relative;
+	margin-top: 8px;
+	background-color: var(--transparency-backdrop);
+	width: 50px;
+	height: 25px;
+	z-index: 100;
+	border-radius: 99vh;
+	cursor: pointer;
+	overflow: hidden;
+	box-shadow: 0 0 0 1px var(--transparency-backdrop-darker);
+}
+
+#c-to-f-switch::before {
+	position: absolute;
+	content: "°C";
+	z-index: 10;
+	left: 2px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: black;
+	font-weight: 800;
+	transition: color 0.25s ease;
+}
+
+#c-to-f-switch::after {
+	position: absolute;
+	content: "°F";
+	right: 6px;
+	top: 50%;
+	transform: translateY(-50%);
+	color: var(--color-text);
+	font-weight: 400;
+	transition: color 0.25s ease;
+}
+
+#c-to-f-switch.to-f::before {
+	font-weight: 400;
+	color: var(--color-text);
+}
+#c-to-f-switch.to-f::after {
+	font-weight: 800;
+	color: black;
+}
+
+#c-to-f {
+	display: none;
+}
+
+#c-to-f-switch .switch {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 25px;
+	width: 25px;
+	background-color: var(--transparency-backdrop-darker);
+	border-radius: 50%;
+	transition: transform 0.25s ease;
+}
+
+#c-to-f-switch.to-f .switch {
+	transform: translateX(100%);
+}
+
 form {
 	display: grid;
 	grid-template: auto auto / 1fr auto;
@@ -124,16 +194,19 @@ button svg path {
 	fill: var(--color-text);
 }
 
+main {
+	align-self: center;
+	justify-self: center;
+}
+
 .weather-container {
 	backdrop-filter: blur(50px);
 	padding: 2rem;
 	display: grid;
-	align-self: center;
 	border-radius: 10px;
 	gap: 1rem;
 	background-color: var(--transparency-backdrop);
 	user-select: none;
-	justify-self: center;
 	font-size: 1rem;
 }
 
@@ -146,7 +219,7 @@ button svg path {
 
 .weather-container h1::after {
 	position: absolute;
-	content: "°C";
+	content: attr(data-unit);
 	font-size: small;
 	transform: scale(2.2);
 	margin-left: 0.5rem;
@@ -177,11 +250,10 @@ button svg path {
 }
 .minor-info > *::after {
 	position: absolute;
-	width: max-content;
 }
 
 #feels::after {
-	content: "°C";
+	content: attr(data-unit);
 }
 
 #humidity::after {

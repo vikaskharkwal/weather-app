@@ -7,6 +7,45 @@ const searchButton = document.getElementById("search-button");
 const statusText = searchButton.nextElementSibling;
 
 const body = document.body;
+const cToFSwitchCont = document.getElementById("c-to-f-switch");
+const cToFSwitch = document.getElementById("c-to-f");
+
+let preferredUnit;
+
+if (localStorage.getItem("preferredUnit")) {
+	preferredUnit = localStorage.getItem("preferredUnit");
+} else {
+	localStorage.setItem("preferredUnit", "cel");
+	preferredUnit = "cel";
+}
+
+if (preferredUnit === "fah") {
+	cToFSwitch.checked = true;
+	cToFSwitchCont.classList.add("to-f");
+} else {
+	cToFSwitch.checked = false;
+	cToFSwitchCont.classList.remove("to-f");
+}
+
+cToFSwitch.addEventListener("change", () => {
+	if (cToFSwitch.checked) {
+		localStorage.setItem("preferredUnit", "fah");
+		cToFSwitchCont.classList.add("to-f");
+		preferredUnit = "fah";
+		temp.textContent = convertToF(temp.textContent);
+		feels.textContent = convertToF(feels.textContent);
+		temp.dataset.unit = "°F";
+		feels.parentElement.dataset.unit = "°F";
+	} else {
+		localStorage.setItem("preferredUnit", "cel");
+		cToFSwitchCont.classList.remove("to-f");
+		preferredUnit = "cel";
+		temp.textContent = convertToC(temp.textContent);
+		feels.textContent = convertToC(feels.textContent);
+		temp.dataset.unit = "°C";
+		feels.parentElement.dataset.unit = "°C";
+	}
+});
 
 const locationName = document.getElementById("location");
 const temp = document.getElementById("temp");
@@ -14,14 +53,12 @@ const type = document.getElementById("type");
 const feels = document.querySelector("#feels span");
 const humidity = document.querySelector("#humidity span");
 
-(function () {
-	let vh = window.innerHeight / 100;
+let vh = window.innerHeight / 100;
+document.documentElement.style.setProperty("--vh", vh);
+window.addEventListener("resize", () => {
+	vh = window.innerHeight / 100;
 	document.documentElement.style.setProperty("--vh", vh);
-	window.addEventListener("resize", () => {
-		vh = window.innerHeight / 100;
-		document.documentElement.style.setProperty("--vh", vh);
-	});
-})();
+});
 
 searchText.addEventListener("click", () => {
 	searchText.value = "";
@@ -75,15 +112,31 @@ async function requestWeather(query) {
 }
 
 function domUpdate(data) {
+	let tempe = Math.round((data.main.temp * 1000 - 274.15 * 1000) / 1000);
+	unit = "°C";
+	let feel = Math.round((data.main.feels_like * 1000 - 274.15 * 1000) / 1000);
+	if (preferredUnit === "fah") {
+		unit = "°F";
+		tempe = convertToF(tempe);
+		feel = convertToF(feel);
+	}
+
 	locationName.textContent = `${data.name}, ${data.sys.country}`;
-	temp.textContent = Math.round((data.main.temp * 1000 - 274.15 * 1000) / 1000);
+	temp.textContent = tempe;
+	temp.dataset.unit = unit;
 	humidity.textContent = data.main.humidity;
-	feels.textContent = Math.round(
-		(data.main.feels_like * 1000 - 274.15 * 1000) / 1000
-	);
+	feels.textContent = feel;
+	feels.parentElement.dataset.unit = unit;
 	type.textContent = data.weather[0].description;
 	typeUpdate(data.weather[0].icon);
 	searchText.value = `${data.name}, ${data.sys.country}`;
+}
+
+function convertToF(t) {
+	return Math.round((t * 9) / 5 + 32);
+}
+function convertToC(t) {
+	return Math.round((t - 32) * (5 / 9));
 }
 
 function typeUpdate(code) {
