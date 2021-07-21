@@ -133,11 +133,8 @@ function typeUpdate(code) {
 }
 
 function getLocation() {
-	console.log("entry");
 	return new Promise((resolve, reject) => {
-		console.log("inside promise top");
 		if (navigator.geolocation) {
-			console.log("inside promise here");
 			navigator.geolocation.getCurrentPosition(
 				(success) => {
 					statusText.textContent = "Locating...";
@@ -164,7 +161,7 @@ function getLocation() {
 
 async function getRealName(lat, lon) {
 	const response = await fetch(
-		`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${API_KEY}`,
+		`https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${API_KEY}`,
 		{ mode: "cors" }
 	);
 	const data = await response.json();
