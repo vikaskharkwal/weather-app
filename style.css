@@ -43,7 +43,6 @@ body {
 
 form {
 	display: grid;
-	/* width: 350px; */
 	grid-template: auto auto / 1fr auto;
 	justify-self: end;
 	gap: 5px 0;
@@ -52,7 +51,6 @@ form {
 
 input {
 	height: 40px;
-	/* width: 200px; */
 	background-color: var(--transparency-backdrop);
 	border-radius: 10px 0 0 10px;
 	padding: 5px 0px 5px 10px;
@@ -73,7 +71,6 @@ button {
 	height: 40px;
 	width: 40px;
 	padding: 10px;
-	/* background-color: rgba(255, 255, 255, 0.3); */
 	background-color: var(--transparency-backdrop-darker);
 	outline: none;
 	cursor: pointer;
@@ -212,9 +209,9 @@ footer a {
 	color: var(--color-text);
 	text-decoration: none;
 }
+
 footer a:hover {
 	text-decoration: underline;
-	background-color: var(--transparency-backdrop-darker);
 }
 
 @media screen and (max-width: 480px) {
