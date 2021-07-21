@@ -14,6 +14,15 @@ const type = document.getElementById("type");
 const feels = document.querySelector("#feels span");
 const humidity = document.querySelector("#humidity span");
 
+(function () {
+	let vh = window.innerHeight / 100;
+	document.documentElement.style.setProperty("--vh", vh);
+	window.addEventListener("resize", () => {
+		vh = window.innerHeight / 100;
+		document.documentElement.style.setProperty("--vh", vh);
+	});
+})();
+
 searchText.addEventListener("click", () => {
 	searchText.value = "";
 });
