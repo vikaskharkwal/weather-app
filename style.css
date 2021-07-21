@@ -36,8 +36,8 @@ body {
 	background-repeat: no-repeat;
 	background-color: rgba(0, 8, 24, 0.86);
 	background-blend-mode: var(--blend);
-	padding: 2rem 1rem;
-	grid-template: max-content 1fr / auto;
+	padding: 1rem 1rem;
+	grid-template: max-content 1fr auto/ auto;
 	color: var(--color-text);
 }
 
@@ -191,7 +191,36 @@ button svg path {
 	content: "%";
 }
 
+footer {
+	font-size: 1.2rem;
+	display: flex;
+	justify-self: start;
+	backdrop-filter: blur(20px);
+	height: 40px;
+	border-radius: 10px;
+	padding: 5px 10px;
+	background-color: var(--transparency-backdrop);
+	gap: 0.5rem;
+	align-items: center;
+}
+
+footer a {
+	display: block;
+	border-radius: 8px;
+	background-color: var(--transparency-backdrop);
+	padding: 0px 5px;
+	color: var(--color-text);
+	text-decoration: none;
+}
+footer a:hover {
+	text-decoration: underline;
+	background-color: var(--transparency-backdrop-darker);
+}
+
 @media screen and (max-width: 480px) {
+	body {
+		padding: 0.5rem;
+	}
 	input {
 		width: 200px;
 	}
@@ -207,5 +236,12 @@ button svg path {
 
 	.minor-info {
 		padding-right: 1rem;
+	}
+	footer {
+		font-size: 0.8rem;
+	}
+
+	footer a {
+		border-radius: 4px;
 	}
 }
