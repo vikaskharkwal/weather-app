@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -7,12 +7,15 @@
 		<title>Weather App</title>
 		<link rel="stylesheet" href="./style.css" />
 	</head>
-	<body
-		style="--url-img: url(./image-assets/clear.jpg); --bposition: 20%"
-		class="body"
-	>
+	<body class="body">
 		<form novalidate id="search-form">
-			<input id="search-text" type="text" placeholder="Search city" required />
+			<input
+				id="search-text"
+				type="text"
+				placeholder="Search city"
+				required
+				autocomplete="off"
+			/>
 			<button id="search-button" type="submit">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -25,15 +28,16 @@
 					/>
 				</svg>
 			</button>
+			<p class="error-text">Error Message</p>
 		</form>
 		<div class="weather-container">
-			<h2 id="location">London, <span>UK</span></h2>
+			<h2 id="location">London, <span>GB</span></h2>
 			<div class="weather-info">
-				<h1 id="temp">19</h1>
+				<h1 id="temp">00</h1>
 				<ul class="minor-info">
 					<li id="type">Clear</li>
-					<li id="feels">Feels Like: <span>20</span></li>
-					<li id="humidity">Humidity: <span>69</span></li>
+					<li id="feels">Feels Like: <span>00</span></li>
+					<li id="humidity">Humidity: <span>00</span></li>
 				</ul>
 			</div>
 		</div>

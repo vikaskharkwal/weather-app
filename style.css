@@ -1,10 +1,4 @@
-*,
-*::after,
-*::before {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 :root {
 	--transparency-backdrop: rgba(255, 255, 255, 0.2);
@@ -12,6 +6,8 @@
 	--color-text: rgb(236, 236, 236);
 	--color-text-alt: rgba(218, 218, 218, 0.466);
 	--blend: normal;
+	--error-color: #e63939;
+	--ff: Poppins, sans-serif;
 }
 :root.light {
 	--transparency-backdrop: rgba(46, 46, 46, 0.4);
@@ -19,6 +15,15 @@
 }
 :root.night {
 	--blend: soft-light;
+}
+
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: var(--ff);
 }
 body {
 	height: 100vh;
@@ -36,17 +41,19 @@ body {
 }
 
 form {
-	width: max-content;
+	/* width: 350px; */
 	height: max-content;
 	display: grid;
-	grid-template: auto / auto auto;
+	grid-template: auto auto / auto auto;
 	justify-self: end;
+	gap: 5px 0;
+	--error-text: var(--color-text);
 }
 
 input {
 	background-color: var(--transparency-backdrop);
 	height: 40px;
-	width: 200px;
+	/* width: 200px; */
 	border-radius: 10px 0 0 10px;
 	padding: 5px 0px 5px 10px;
 	color: var(--color-text);
@@ -73,7 +80,7 @@ button {
 	cursor: pointer;
 	border-radius: 0 10px 10px 0;
 	border: 1px solid transparent;
-	border-left: 1px solid transparent;
+	border-left: 0px solid transparent;
 }
 
 input::placeholder {
@@ -82,11 +89,38 @@ input::placeholder {
 
 input:focus + button {
 	border: 1px solid var(--color-text);
-	border-left: 1px solid transparent;
+	border-left: 0px solid transparent;
 }
 
-button:focus {
+/* button:focus {
 	border: 1px solid var(--color-text);
+	border-left: 0px solid transparent;
+} */
+form.error {
+	--error-text: var(--error-color);
+}
+
+form.error input {
+	border: 1px solid var(--error-color);
+	border-right: 0px solid transparent;
+}
+
+form.error button {
+	border: 1px solid var(--error-color);
+	border-left: 0px solid transparent;
+}
+
+.error-text {
+	text-transform: capitalize;
+	grid-column: 1 / 3;
+	/* padding-left: 10px; */
+	font-weight: 400;
+	color: var(--error-text);
+	visibility: hidden;
+}
+
+.error-text.show {
+	visibility: visible;
 }
 
 button svg {
@@ -112,13 +146,13 @@ button svg path {
 	background-color: var(--transparency-backdrop);
 	user-select: none;
 	justify-self: center;
-	font-size: 1em;
+	font-size: 1rem;
 }
 
 .weather-container h1 {
 	position: relative;
 	/* background-color: red; */
-	/* line-height: 1; */
+	line-height: 1;
 	width: max-content;
 	font-size: 8em;
 }
@@ -128,9 +162,10 @@ button svg path {
 	content: "°C";
 	font-size: small;
 	transform: scale(2.2);
-	top: 23%;
-	left: 102%;
-	font-weight: 100;
+	margin-left: 0.5rem;
+	top: 15%;
+	/* left: 102%; */
+	font-weight: 300;
 }
 
 .weather-info {
@@ -138,6 +173,7 @@ button svg path {
 	grid-template: 1fr / repeat(2, auto);
 	gap: 3rem;
 	align-items: center;
+	text-transform: capitalize;
 }
 
 .minor-info {
