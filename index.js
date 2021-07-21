@@ -51,6 +51,7 @@ form.addEventListener("submit", (e) => {
 
 async function requestWeather(query) {
 	try {
+		statusText.classList.add("show");
 		statusText.textContent = "Loading data...";
 		let response = await fetch(
 			`https://api.openweathermap.org/data/2.5/weather?q=${query}&APPID=${API_KEY}`,
