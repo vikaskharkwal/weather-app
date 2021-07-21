@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Weather App</title>
+		<link rel="stylesheet" href="./style.css" />
+	</head>
+	<body
+		style="--url-img: url(./image-assets/clear.jpg); --bposition: 20%"
+		class="body"
+	>
+		<form novalidate id="search-form">
+			<input id="search-text" type="text" placeholder="Search city" required />
+			<button id="search-button" type="submit">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="24"
+					height="24"
+					viewBox="0 0 24 24"
+				>
+					<path
+						d="M23.809 21.646l-6.205-6.205c1.167-1.605 1.857-3.579 1.857-5.711 0-5.365-4.365-9.73-9.731-9.73-5.365 0-9.73 4.365-9.73 9.73 0 5.366 4.365 9.73 9.73 9.73 2.034 0 3.923-.627 5.487-1.698l6.238 6.238 2.354-2.354zm-20.955-11.916c0-3.792 3.085-6.877 6.877-6.877s6.877 3.085 6.877 6.877-3.085 6.877-6.877 6.877c-3.793 0-6.877-3.085-6.877-6.877z"
+					/>
+				</svg>
+			</button>
+		</form>
+		<div class="weather-container">
+			<h2 id="location">London, <span>UK</span></h2>
+			<div class="weather-info">
+				<h1 id="temp">19</h1>
+				<ul class="minor-info">
+					<li id="type">Clear</li>
+					<li id="feels">Feels Like: <span>20</span></li>
+					<li id="humidity">Humidity: <span>69</span></li>
+				</ul>
+			</div>
+		</div>
+		<script src="./index.js"></script>
+	</body>
+</html>

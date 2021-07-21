@@ -1,0 +1,181 @@
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	--transparency-backdrop: rgba(255, 255, 255, 0.2);
+	--transparency-backdrop-darker: rgba(255, 255, 255, 0.4);
+	--color-text: rgb(236, 236, 236);
+	--color-text-alt: rgba(218, 218, 218, 0.466);
+	--blend: normal;
+}
+:root.light {
+	--transparency-backdrop: rgba(46, 46, 46, 0.4);
+	--transparency-backdrop-darker: rgba(46, 46, 46, 0.6);
+}
+:root.night {
+	--blend: soft-light;
+}
+body {
+	height: 100vh;
+	width: 100vw;
+	display: grid;
+	background-image: var(--url-img);
+	background-position-y: var(--bposition, 0%);
+	background-size: auto;
+	background-repeat: no-repeat;
+	background-color: rgba(0, 8, 24, 0.86);
+	background-blend-mode: var(--blend);
+	padding: 1rem;
+	grid-template: max-content 1fr / auto;
+	color: var(--color-text);
+}
+
+form {
+	width: max-content;
+	height: max-content;
+	display: grid;
+	grid-template: auto / auto auto;
+	justify-self: end;
+}
+
+input {
+	background-color: var(--transparency-backdrop);
+	height: 40px;
+	width: 200px;
+	border-radius: 10px 0 0 10px;
+	padding: 5px 0px 5px 10px;
+	color: var(--color-text);
+	outline: none;
+	border: 1px solid transparent;
+	border-right: none;
+	font-size: 1.2rem;
+	backdrop-filter: blur(50px);
+}
+
+input:focus {
+	border: 1px solid var(--color-text);
+	border-right: none;
+}
+
+button {
+	backdrop-filter: blur(50px);
+	height: 40px;
+	width: 40px;
+	padding: 10px;
+	/* background-color: rgba(255, 255, 255, 0.3); */
+	background-color: var(--transparency-backdrop-darker);
+	outline: none;
+	cursor: pointer;
+	border-radius: 0 10px 10px 0;
+	border: 1px solid transparent;
+	border-left: 1px solid transparent;
+}
+
+input::placeholder {
+	color: var(--color-text-alt);
+}
+
+input:focus + button {
+	border: 1px solid var(--color-text);
+	border-left: 1px solid transparent;
+}
+
+button:focus {
+	border: 1px solid var(--color-text);
+}
+
+button svg {
+	display: block;
+	height: 100%;
+	width: auto;
+	pointer-events: none;
+}
+
+button svg path {
+	fill: var(--color-text);
+}
+
+.weather-container {
+	backdrop-filter: blur(50px);
+	/* margin-left: 5rem; */
+	padding: 2rem;
+	width: max-content;
+	display: grid;
+	align-self: center;
+	border-radius: 10px;
+	gap: 1rem;
+	background-color: var(--transparency-backdrop);
+	user-select: none;
+	justify-self: center;
+	font-size: 1em;
+}
+
+.weather-container h1 {
+	position: relative;
+	/* background-color: red; */
+	/* line-height: 1; */
+	width: max-content;
+	font-size: 8em;
+}
+
+.weather-container h1::after {
+	position: absolute;
+	content: "°C";
+	font-size: small;
+	transform: scale(2.2);
+	top: 23%;
+	left: 102%;
+	font-weight: 100;
+}
+
+.weather-info {
+	display: grid;
+	grid-template: 1fr / repeat(2, auto);
+	gap: 3rem;
+	align-items: center;
+}
+
+.minor-info {
+	display: grid;
+	gap: 1rem;
+	width: max-content;
+	list-style: none;
+	font-size: 1.2em;
+	padding-inline: 1rem 2rem;
+	border-left: 1px solid var(--color-text);
+}
+
+#feels {
+	position: relative;
+}
+.minor-info > *::after {
+	position: absolute;
+	width: max-content;
+}
+
+#feels::after {
+	content: "°C";
+}
+#humidity::after {
+	content: "%";
+}
+
+@media screen and (max-width: 480px) {
+	.weather-container {
+		font-size: 0.8rem;
+		padding: 1rem;
+	}
+
+	.weather-info {
+		gap: 2.5rem;
+	}
+
+	.minor-info {
+		padding-right: 1.5rem;
+	}
+}
