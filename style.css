@@ -197,21 +197,22 @@ footer {
 	border-radius: 10px;
 	padding: 5px 10px;
 	background-color: var(--transparency-backdrop);
-	gap: 0.5rem;
+	gap: 5px;
 	align-items: center;
 }
 
 footer a {
+	font-weight: 600;
 	display: block;
 	border-radius: 8px;
-	background-color: var(--transparency-backdrop);
-	padding: 0px 5px;
+	/* background-color: var(--transparency-backdrop); */
+	/* padding: 0px 5px; */
 	color: var(--color-text);
-	text-decoration: none;
+	/* text-decoration: none; */
 }
 
 footer a:hover {
-	text-decoration: underline;
+	/* text-decoration: underline; */
 }
 
 @media screen and (max-width: 480px) {
