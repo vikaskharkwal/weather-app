@@ -112,9 +112,9 @@ async function requestWeather(query) {
 }
 
 function domUpdate(data) {
-	let tempe = Math.round((data.main.temp * 1000 - 274.15 * 1000) / 1000);
+	let tempe = Math.round((data.main.temp * 1000 - 273.15 * 1000) / 1000);
 	unit = "°C";
-	let feel = Math.round((data.main.feels_like * 1000 - 274.15 * 1000) / 1000);
+	let feel = Math.round((data.main.feels_like * 1000 - 273.15 * 1000) / 1000);
 	if (preferredUnit === "fah") {
 		unit = "°F";
 		tempe = convertToF(tempe);
